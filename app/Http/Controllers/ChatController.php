@@ -10,8 +10,8 @@ class ChatController extends Controller
     //
     public function index()
     {
-        // 最後の20件を取得
-        $messages = Message::orderBy('created_at', 'desc')->take(20)->get();
+        // 最後の100件を取得
+        $messages = Message::orderBy('created_at', 'asc')->take(100)->get();
         $response = [
             'messages' => $messages
         ];
