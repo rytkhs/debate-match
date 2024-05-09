@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\DebateController;
+
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
 
@@ -24,7 +27,16 @@ require __DIR__.'/auth.php';
 
 Route::get('/chat', [ChatController::class, 'index']);
 
+Route::get('/debateroom', [DebateController::class, 'debateRoom'])->name('debateRoom');
+
+Route::get('/chatbot', [ChatbotController::class, 'index'])->name('index');
+Route::post('/chatbot/ask', [ChatbotController::class, 'ask'])->name('ask');
 
 Route::post('/', function (Request $request) {
     MessageSent::dispatch($request->message);
+});
+
+
+Route::get('/test', function () {
+    return view('test');
 });
